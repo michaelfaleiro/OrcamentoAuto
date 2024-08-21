@@ -6,4 +6,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\OrcamentoAuto.Communication\OrcamentoAuto.Communication.csproj" />
+      <ProjectReference Include="..\OrcamentoAuto.Core\OrcamentoAuto.Core.csproj" />
+      <ProjectReference Include="..\OrcamentoAuto.Exceptions\OrcamentoAuto.Exceptions.csproj" />
+      <ProjectReference Include="..\OrcamentoAuto.Infra\OrcamentoAuto.Infra.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -7,7 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\OrcamentoAuto.Application\OrcamentoAuto.Application.csproj" />
+      <ProjectReference Include="..\OrcamentoAuto.Communication\OrcamentoAuto.Communication.csproj" />
+      <ProjectReference Include="..\OrcamentoAuto.Core\OrcamentoAuto.Core.csproj" />
+      <ProjectReference Include="..\OrcamentoAuto.Exceptions\OrcamentoAuto.Exceptions.csproj" />
+      <ProjectReference Include="..\OrcamentoAuto.Infra\OrcamentoAuto.Infra.csproj" />
     </ItemGroup>
 
 </Project>
