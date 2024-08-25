@@ -1,8 +1,9 @@
 using OrcamentoAuto.Api.Filters;
 using OrcamentoAuto.Application.Services.ClienteService;
-using OrcamentoAuto.Core.Repositories.Clientes;
+using OrcamentoAuto.Application.Services.OrcamentoService;
+using OrcamentoAuto.Application.Services.ProdutoService;
 using OrcamentoAuto.Infra.Data;
-using OrcamentoAuto.Infra.Repositories.Clientes;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDB"));
 
-builder.Services.AddSingleton<IClienteRepository, ClienteRepository>();
 builder.Services.ClienteUseCase();
+builder.Services.OrcamentoUseCase();
+builder.Services.ProdutoUseCase();
 
 builder.Services.AddMvc(config => config.Filters.Add(typeof(ExceptionFilter)));
 

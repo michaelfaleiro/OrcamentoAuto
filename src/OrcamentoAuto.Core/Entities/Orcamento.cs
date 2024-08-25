@@ -1,23 +1,30 @@
-﻿namespace OrcamentoAuto.Core.Entities;
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace OrcamentoAuto.Core.Entities;
+
+[BsonIgnoreExtraElements]
 public class Orcamento : Entity
 {
 
-    public Orcamento(Cliente cliente, string status)
+    public Orcamento(Cliente cliente, Veiculo veiculo, string status)
     {
         Cliente = cliente;
+        Veiculo = veiculo;
         Status = status;
+        Itens = [];
         CreatedAt = DateTime.UtcNow;
     }
 
     public Cliente Cliente { get; private set; }
-    public IEnumerable<ItemOrcamento> Itens { get; private set; } = [];
+    public Veiculo Veiculo { get; private set; }
+    public IList<ItemOrcamento> Itens { get; private set; }
     public string Status { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
 
     public void AdicionarItem(ItemOrcamento item)
     {
-        Itens = Itens.Append(item);
+        Itens.Add(item);
         UpdatedAt = DateTime.UtcNow;
     }
 
@@ -27,15 +34,9 @@ public class Orcamento : Entity
         UpdatedAt = DateTime.UtcNow;
     }
 
-    public void AtualizarItens(IEnumerable<ItemOrcamento> itens)
-    {
-        Itens = itens;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
     public void RemoverItem(ItemOrcamento item)
     {
-        Itens = Itens.Where(i => i.Id != item.Id);
+        Itens.Remove(item);
         UpdatedAt = DateTime.UtcNow;
     }
 
@@ -50,5 +51,10 @@ public class Orcamento : Entity
         return Itens.Sum(i => i.ValorVenda);
     }
 
-
+    public void AtualizarVeiculo(Veiculo veiculo)
+    {
+        Veiculo = veiculo;
+        UpdatedAt = DateTime.UtcNow;
+    }
 }
+ 

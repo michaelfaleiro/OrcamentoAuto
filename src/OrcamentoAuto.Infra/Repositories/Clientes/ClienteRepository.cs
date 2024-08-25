@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using OrcamentoAuto.Core.Entities;
 using OrcamentoAuto.Core.Repositories.Clientes;
+using OrcamentoAuto.Core.Response;
 using OrcamentoAuto.Infra.Data;
 
 namespace OrcamentoAuto.Infra.Repositories.Clientes;
@@ -11,10 +12,12 @@ public class ClienteRepository : IClienteRepository
 
     public ClienteRepository(IOptions<MongoDbSettings> settings)
     {
-        var client = new MongoClient(settings.Value.ConnectionUri);
-        var database = client.GetDatabase(settings.Value.DatabaseName);
+        var cliente = new MongoClient(settings.Value.ConnectionUri);
+        var database = cliente.GetDatabase(settings.Value.DatabaseName);
         _collection = database.GetCollection<Cliente>(settings.Value.CollectionsNames[nameof(Cliente)]);
     }
+
+
 
     public async Task<Cliente> CreateAsync(Cliente entity)
     {
@@ -22,16 +25,22 @@ public class ClienteRepository : IClienteRepository
         return entity;
     }
 
-    public async Task DeleteAsync(string id)
+    public async Task<PagedResponse<Cliente>> GetAllAsync(int pageNumber, int pageSize)
     {
-        var filter = Builders<Cliente>.Filter.Eq(x => x.Id, id);
-        await _collection.DeleteOneAsync(filter);
-    }
+        var count = await _collection.CountDocumentsAsync(_ => true);
 
-    public async Task<IEnumerable<Cliente>> GetAllAsync()
-    {
-        var clientes = await _collection.Find(_ => true).ToListAsync();
-        return clientes;
+        var clientes = await _collection.Find(p => true)
+        .Skip((pageNumber - 1) * pageSize)
+        .Limit(pageSize)
+        .ToListAsync();
+
+        return new PagedResponse<Cliente>
+        {
+            Data = clientes,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = (int)count
+        };
     }
 
     public async Task<Cliente> GetByIdAsync(string id)
@@ -39,9 +48,16 @@ public class ClienteRepository : IClienteRepository
         return await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task UpdateAsync(string id, Cliente entity)
+    public async Task UpdateAsync(Cliente entity)
     {
-        var filter = Builders<Cliente>.Filter.Eq(x => x.Id, id);
+        var filter = Builders<Cliente>.Filter.Eq(x => x.Id, entity.Id);
         await _collection.ReplaceOneAsync(filter, entity);
     }
+
+    public async Task DeleteAsync(string id)
+    {
+        var filter = Builders<Cliente>.Filter.Eq(x => x.Id, id);
+        var delete = await _collection.DeleteOneAsync(filter);
+    }
+        
 }

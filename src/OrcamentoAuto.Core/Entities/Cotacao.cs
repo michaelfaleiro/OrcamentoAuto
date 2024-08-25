@@ -1,4 +1,8 @@
-﻿namespace OrcamentoAuto.Core.Entities;
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace OrcamentoAuto.Core.Entities;
+
+[BsonIgnoreExtraElements]
 public class Cotacao : Entity
 {
     public Cotacao(string orcamentoId)

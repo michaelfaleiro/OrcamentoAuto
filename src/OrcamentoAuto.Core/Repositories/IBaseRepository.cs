@@ -1,9 +1,11 @@
-﻿namespace OrcamentoAuto.Core.Repositories;
+﻿using OrcamentoAuto.Core.Response;
+
+namespace OrcamentoAuto.Core.Repositories;
 public interface IBaseRepository<T> where T : class
 {
-    Task<IEnumerable<T>> GetAllAsync();
+    Task<PagedResponse<T>> GetAllAsync(int pageNumber, int pageSize);
     Task<T> GetByIdAsync(string id);
     Task<T> CreateAsync(T entity);
-    Task UpdateAsync(string id, T entity);
+    Task UpdateAsync(T entity);
     Task DeleteAsync(string id);
 }

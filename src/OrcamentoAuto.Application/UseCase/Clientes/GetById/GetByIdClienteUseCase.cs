@@ -1,5 +1,6 @@
 ﻿using OrcamentoAuto.Communication.Response;
 using OrcamentoAuto.Communication.Response.Cliente;
+using OrcamentoAuto.Communication.Response.Veiculo;
 using OrcamentoAuto.Core.Repositories.Clientes;
 using OrcamentoAuto.Exceptions.ExceptionsBase;
 
@@ -30,6 +31,19 @@ public class GetByIdClienteUseCase
                 CpfCnpj = cliente.CpfCnpj,
                 RgIe = cliente.RgIe,
                 Email = cliente.Email,
+                Veiculos = cliente.Veiculos.Select(v => new ResponseVeiculoJson
+                {
+                    Id = v.Id,
+                    Marca = v.Marca,
+                    Modelo = v.Modelo,
+                    AnoFabricacao = v.AnoFabricacao,
+                    AnoModelo = v.AnoModelo,
+                    Placa = v.Placa,
+                    Chassi = v.Chassi,
+                    Renavam = v.Renavam,
+                    CreatedAt = v.CreatedAt,
+                    UpdatedAt = v.UpdatedAt ?? null
+                }).ToList(),
                 CreatedAt = cliente.CreatedAt,
                 UpdatedAt = cliente.UpdatedAt ?? null
             }

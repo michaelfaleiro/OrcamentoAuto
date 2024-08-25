@@ -1,8 +1,13 @@
-﻿namespace OrcamentoAuto.Core.Entities;
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace OrcamentoAuto.Core.Entities;
+
+[BsonIgnoreExtraElements]
 public class ItemOrcamento : Entity
 {
-    public ItemOrcamento(string sku, int quantidade, string nome, decimal valorVenda)
+    public ItemOrcamento(string produtoId, string sku, int quantidade, string nome, decimal valorVenda)
     {
+        ProdutoId = produtoId;
         Sku = sku;
         Quantidade = quantidade;
         Nome = nome;
@@ -10,21 +15,20 @@ public class ItemOrcamento : Entity
         CreatedAt = DateTime.UtcNow;
     }
 
+    public string ProdutoId { get; private set; }
     public string Sku { get; private set; }
     public int Quantidade { get; private set; }
-    public string Nome { get;private set; }
+    public string Nome { get; private set; }
     public decimal ValorVenda { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
 
-    public void Atualizar(string sku, int quantidade, string nome, decimal valorVenda)
+    public void Atualizar(int quantidade, decimal valorVenda)
     {
-        Sku = sku;
         Quantidade = quantidade;
-        Nome = nome;
         ValorVenda = valorVenda;
         UpdatedAt = DateTime.UtcNow;
     }
-       
+
 
 }

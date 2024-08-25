@@ -1,8 +1,15 @@
 ﻿using System.Net;
 
 namespace OrcamentoAuto.Exceptions.ExceptionsBase;
-public class ErrorOnValidateException(string message) : OrcamentoAutoException(message)
+public class ErrorOnValidateException : OrcamentoAutoException
 {
+    private readonly IList<string> _errors;
+
+    public ErrorOnValidateException(IList<string> messages) : base(string.Empty)
+    {
+        _errors = messages;
+    }
+
     public override HttpStatusCode GetStatusCode()
     {
         return HttpStatusCode.BadRequest;
@@ -10,6 +17,6 @@ public class ErrorOnValidateException(string message) : OrcamentoAutoException(m
 
     public override IList<string> GetErrorMessages()
     {
-        return new List<string> { Message };
+        return _errors;
     }
 }

@@ -3,4 +3,5 @@
 namespace OrcamentoAuto.Core.Repositories.Orcamentos;
 public interface IOrcamentoRepository : IBaseRepository<Orcamento>
 {
+    
 }
