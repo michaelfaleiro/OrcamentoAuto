@@ -30,7 +30,7 @@ public class RegisterOrcamentoUseCase
         var veiculo = cliente.Veiculos.FirstOrDefault(v => v.Id == request.VeiculoId)
             ?? throw new NotFoundException("Veículo não encontrado");
 
-        var orcamento = new Orcamento(cliente, veiculo, request.Status);
+        var orcamento = new Orcamento(cliente, veiculo, request.Status, request.VendedorId);
         
         await _orcamentoRepository.CreateAsync(orcamento);
 
@@ -56,6 +56,7 @@ public class RegisterOrcamentoUseCase
                     Placa = orcamento.Veiculo.Placa
                 },
                 Status = orcamento.Status,
+                VendedorId = orcamento.VendedorId,
                 CreatedAt = orcamento.CreatedAt,
                 UpdatedAt = orcamento.UpdatedAt
             }

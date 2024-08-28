@@ -6,4 +6,9 @@ public class Email
         Endereco = endereco;
     }
     public string Endereco { get; private set; }
+
+    public void Atualizar(string endereco)
+    {
+        Endereco = endereco;
+    }
 }

@@ -2,6 +2,7 @@
 using OrcamentoAuto.Application.UseCase.Produtos.Delete;
 using OrcamentoAuto.Application.UseCase.Produtos.GetAll;
 using OrcamentoAuto.Application.UseCase.Produtos.GetById;
+using OrcamentoAuto.Application.UseCase.Produtos.MovimentarEstoque;
 using OrcamentoAuto.Application.UseCase.Produtos.Register;
 using OrcamentoAuto.Application.UseCase.Produtos.Update;
 using OrcamentoAuto.Communication.Request.Produto;
@@ -69,6 +70,17 @@ public class ProdutosController : ControllerBase
         [FromServices] DeleteProdutoUseCase useCase)
     {
         await useCase.Execute(id);
+        return NoContent();
+    }
+
+    [HttpPost("movimentacao-estoque")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> MovimentarEstoqueAsync(
+        [FromBody] MovimentarEstoqueRequest request,
+        [FromServices] MovimentacaoEstoqueUseCase useCase)
+    {
+        await useCase.Execute(request);
         return NoContent();
     }
 }

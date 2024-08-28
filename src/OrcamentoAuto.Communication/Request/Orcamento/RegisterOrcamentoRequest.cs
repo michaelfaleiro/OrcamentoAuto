@@ -4,5 +4,6 @@ public class RegisterOrcamentoRequest
     public string ClienteId { get; set; } = string.Empty;
     public string VeiculoId { get; set; } = string.Empty;
     public string Status { get; set; } = string.Empty;
-    
+    public string VendedorId { get; set; } = string.Empty;
+
 }

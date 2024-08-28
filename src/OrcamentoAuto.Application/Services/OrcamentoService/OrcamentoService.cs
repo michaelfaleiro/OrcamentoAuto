@@ -5,6 +5,7 @@ using OrcamentoAuto.Application.UseCase.Orcamentos.ItemOrcamento.AdicionarItem;
 using OrcamentoAuto.Application.UseCase.Orcamentos.ItemOrcamento.RemoverItem;
 using OrcamentoAuto.Application.UseCase.Orcamentos.ItemOrcamento.UpdateItem;
 using OrcamentoAuto.Application.UseCase.Orcamentos.Register;
+using OrcamentoAuto.Application.UseCase.Orcamentos.Servicos;
 using OrcamentoAuto.Core.Repositories.Orcamentos;
 using OrcamentoAuto.Infra.Repositories.Orcamentos;
 
@@ -21,6 +22,7 @@ public static class OrcamentoService
         services.AddSingleton<AdicionarItemOrcamentoUseCase>();
         services.AddSingleton<RemoverItemOrcamentoUseCase>();
         services.AddSingleton<UpdateItemOrcamentoUseCase>();
+        services.AddSingleton<AdicionarServicoOrcamentoUseCase>();
 
         return services;
     }

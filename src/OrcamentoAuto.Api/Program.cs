@@ -1,5 +1,6 @@
 using OrcamentoAuto.Api.Filters;
 using OrcamentoAuto.Application.Services.ClienteService;
+using OrcamentoAuto.Application.Services.FuncionarioService;
 using OrcamentoAuto.Application.Services.OrcamentoService;
 using OrcamentoAuto.Application.Services.ProdutoService;
 using OrcamentoAuto.Infra.Data;
@@ -18,6 +19,7 @@ builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("Mo
 builder.Services.ClienteUseCase();
 builder.Services.OrcamentoUseCase();
 builder.Services.ProdutoUseCase();
+builder.Services.FuncionarioUseCase();
 
 builder.Services.AddMvc(config => config.Filters.Add(typeof(ExceptionFilter)));
 

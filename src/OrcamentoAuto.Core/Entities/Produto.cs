@@ -1,4 +1,8 @@
-﻿namespace OrcamentoAuto.Core.Entities;
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace OrcamentoAuto.Core.Entities;
+
+[BsonIgnoreExtraElements]
 public class Produto : Entity
 {
     public Produto(string sku, string descricao, string marca, decimal valorCusto, decimal valorVenda)
@@ -17,7 +21,7 @@ public class Produto : Entity
     public string Marca { get; private set; }
     public decimal ValorCusto { get; private set; }
     public decimal ValorVenda { get; private set; }
-    public int QuantidadeEstoque { get; private set; }
+    public int EstoqueAtual { get; private set; }
     public bool Ativo { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
@@ -31,6 +35,19 @@ public class Produto : Entity
         ValorVenda = valorVenda;
         UpdatedAt = DateTime.UtcNow;
     }
+
+    public void AdicionarEstoque(int quantidade)
+    {
+        EstoqueAtual += quantidade;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void RemoverEstoque(int quantidade)
+    {
+        EstoqueAtual -= quantidade;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
 
     public void AtivarProduto()
     {

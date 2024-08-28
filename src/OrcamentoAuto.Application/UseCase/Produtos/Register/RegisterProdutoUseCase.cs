@@ -33,7 +33,7 @@ public class RegisterProdutoUseCase
                 Marca = produto.Marca,
                 ValorCusto = produto.ValorCusto,
                 ValorVenda = produto.ValorVenda,
-                QuantidadeEstoque = produto.QuantidadeEstoque,
+                EstoqueAtual = produto.EstoqueAtual,
                 Ativo = produto.Ativo,
                 CreatedAt = produto.CreatedAt,
                 UpdatedAt = produto.UpdatedAt

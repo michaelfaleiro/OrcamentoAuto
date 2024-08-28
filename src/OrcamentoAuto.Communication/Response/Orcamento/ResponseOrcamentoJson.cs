@@ -10,6 +10,7 @@ public class ResponseOrcamentoJson
     public ResponseVeiculoJson Veiculo { get; set; } = new ResponseVeiculoJson();
     public IList<ResponseItemOrcamentoJson> Itens { get; set; } = [];
     public string Status { get;  set; } = string.Empty;
+    public string VendedorId { get; set; } = string.Empty;
     public DateTime CreatedAt { get;  set; }
     public DateTime? UpdatedAt { get;  set; }
 }

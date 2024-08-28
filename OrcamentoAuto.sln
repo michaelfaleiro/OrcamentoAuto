@@ -15,12 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrcamentoAuto.Api", "src\Or
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8181B017-42D4-41CE-BC36-DF8361208A02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrcamentoAuto.Infra", "src\OrcamentoAuto.Infra\OrcamentoAuto.Infra.csproj", "{BF2C70E0-7AC3-4E98-9225-8AC578FC007B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrcamentoAuto.Infra", "src\OrcamentoAuto.Infra\OrcamentoAuto.Infra.csproj", "{BF2C70E0-7AC3-4E98-9225-8AC578FC007B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9AAFEC6A-FF2B-4048-A704-DFBF0C8EC27B} = {9AAFEC6A-FF2B-4048-A704-DFBF0C8EC27B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrcamentoAuto.Communication", "src\OrcamentoAuto.Communication\OrcamentoAuto.Communication.csproj", "{ADBCD9F3-9AFB-4BF2-A219-E03BED0D88EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrcamentoAuto.Communication", "src\OrcamentoAuto.Communication\OrcamentoAuto.Communication.csproj", "{ADBCD9F3-9AFB-4BF2-A219-E03BED0D88EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
